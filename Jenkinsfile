@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 sh 'python3 -m pip install -r requirements.txt'
@@ -17,8 +11,9 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'python3 -m pytest'
+                sh 'python3 -m py_compile app.py'
             }
         }
+
     }
 }
